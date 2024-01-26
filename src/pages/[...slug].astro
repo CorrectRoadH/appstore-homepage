@@ -1,0 +1,26 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+	const apps = await getCollection('app');
+	return apps.map((app) => ({
+		params: { slug: app.data.name },
+		props: app,
+	}));
+}
+type Props = CollectionEntry<'app'>;
+
+const app = Astro.props;
+---
+<div>
+    <h1>{app.data.name}</h1>
+	<div>About</div>
+	<hr />
+	<div>
+		screen
+	</div>
+	<hr />
+	<div>
+		install app in casaos
+	</div>
+</div>

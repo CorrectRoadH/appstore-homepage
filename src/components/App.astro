@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+type Props = CollectionEntry<'app'>['data']
+
+const { name,casaos  } = Astro.props;
+---
+<a href=`/${name}`>
+    <div class="app-container">
+        <img class="app-icon" alt="app" src={casaos.icon}>
+        <div class="app-name">{casaos.title.en_us || casaos.title.custom || "无应用名"}</div>
+    </div>
+</a>
+
+<style>
+    .app-icon{
+        transition: box-shadow 300ms, transform 300ms;
+
+        width: 100px;
+        height: 100px;
+        border-radius: 30px;
+        background-color: white;
+    }
+    .app-icon:hover{
+        cursor: pointer;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+        transform: scale(1.1) rotate(10deg);
+    }
+    .app-name{
+        font-size: 20px;
+        font-weight: bold;
+        margin: auto;
+        text-align: center; /* 水平居中文本 */
+        overflow: hidden; /* 隐藏溢出的内容 */
+        text-overflow: ellipsis; /* 使用省略号*/
+    }
+    .app-container{
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 在容器内部水平居中所有子元素 */
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+</style>
